@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saga Holidays MKT4080EF Q&A Command Center (N = 10 + Jan's Recordings)</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-alt: #263349;
+    --border: #334155;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --gold: #fbbf24;
+    --green: #34d399;
+    --rose: #fb7185;
+    --purple: #c084fc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 20px;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, #13294b 0%, #1e3a5f 100%);
+    border: 1px solid #2d4f7c;
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+  header h1 { font-size: 1.45rem; font-weight: 700; color: #fff; }
+  header p { color: #cbd5e1; font-size: 0.92rem; margin-top: 4px; }
+  .badge-group { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid #3b6399;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.15s;
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #0f172a;
+    border-color: var(--accent);
+  }
+  .tab-btn.jan-tab { border-color: rgba(192, 132, 252, 0.55); color: #e9d5ff; }
+  .tab-btn.jan-tab.active { background: var(--purple); color: #0f172a; border-color: var(--purple); }
+  .search-bar {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1rem;
+    margin-bottom: 12px;
+    outline: none;
+  }
+  .search-bar:focus { border-color: var(--accent); }
+  .filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: #cbd5e1;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+  .pill.active {
+    background: var(--gold);
+    color: #0f172a;
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+  .pill.jan-pill { border-color: rgba(192, 132, 252, 0.6); color: #e9d5ff; }
+  .pill.jan-pill.active { background: var(--purple); color: #0f172a; border-color: var(--purple); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card.jan-card { border-color: rgba(192, 132, 252, 0.45); }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag-cat { background: rgba(56, 189, 248, 0.16); color: var(--accent); }
+  .tag-jan { background: rgba(192, 132, 252, 0.18); color: var(--purple); }
+  .tag-owner { background: rgba(251, 191, 36, 0.16); color: var(--gold); }
+  .tag-slide { background: rgba(52, 211, 153, 0.14); color: var(--green); }
+  .q-title { font-size: 1.04rem; font-weight: 700; color: #fff; }
+  .trap-box {
+    background: rgba(251, 113, 133, 0.1);
+    border-left: 3px solid var(--rose);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #fecdd3;
+  }
+  .spoken-box {
+    background: var(--surface-alt);
+    border-left: 3px solid var(--green);
+    padding: 11px 14px;
+    border-radius: 6px;
+    font-size: 0.93rem;
+    color: #f1f5f9;
+  }
+  .jan-box {
+    background: rgba(192, 132, 252, 0.1);
+    border-left: 3px solid var(--purple);
+    padding: 10px 13px;
+    border-radius: 6px;
+    font-size: 0.89rem;
+    color: #f3e8ff;
+  }
+  .meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+  .copy-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 5px 11px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .copy-btn:hover { background: rgba(56, 189, 248, 0.12); }
+  .hidden { display: none !important; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 0.86rem;
+  }
+  th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #13294b; color: var(--gold); font-weight: 700; }
+  tr:hover td { background: var(--surface-alt); }
+  .rule-banner {
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+    color: #fde68a;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>Saga Holidays MKT4080EF Q&A Command Center (N = 10 + Jan's Recordings)</h1>
+      <p>Stage Prep & Lecturer Q&A Playbook for Friday 27 Nov 2026 (3:00 PM) | Repositioning Saga Holidays</p>
+    </div>
+    <div class="badge-group">
+      <span class="badge">23 Q&A Cards (8 Off-Slide Jan Traps)</span>
+      <span class="badge">10 Jan Recording Secrets</span>
+      <span class="badge">Stage Rule: Handwritten Cards Only</span>
+    </div>
+  </header>
+
+  <div class="rule-banner">
+    <strong>Stage Reminder (Jan Chau Nov 19 Rule):</strong> Drill with this on laptops or phones until 3:00 PM on Friday, 27 Nov. On stage, phones and printed strips are banned, so copy your top trigger lines onto the back of a handwritten index card.
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('qna', this)">1. Lecturer Q&A Bank (23 Questions)</button>
+    <button class="tab-btn jan-tab" onclick="switchTab('jan', this)">2. Jan's Off-Slide Playbook (10 Recording Secrets)</button>
+    <button class="tab-btn" onclick="switchTab('theory', this)">3. PDF Theory Decoder (9 Frameworks)</button>
+    <button class="tab-btn" onclick="switchTab('data', this)">4. Raw Interview Lookup (R1 to R10)</button>
+  </div>
+
+  <input type="text" id="searchInput" class="search-bar" placeholder="Search any question, Jan example (Cathay, taxi, recovery, ROI, Myopia, QR), theory (SERVQUAL, MASDA, Kotler), or respondent (R4, R5, R10)..." oninput="renderAll()">
+
+  <div id="qnaSection">
+    <div class="filters" id="categoryPills"></div>
+    <div class="grid" id="qnaGrid"></div>
+  </div>
+
+  <div id="janSection" class="hidden">
+    <div class="grid" id="janGrid"></div>
+  </div>
+
+  <div id="theorySection" class="hidden">
+    <div class="grid" id="theoryGrid"></div>
+  </div>
+
+  <div id="dataSection" class="hidden">
+    <table>
+      <thead>
+        <tr>
+          <th>ID & Age</th>
+          <th>Profile & Income</th>
+          <th>Trips & Booking</th>
+          <th>Tour Choice & WTP</th>
+          <th>Key Insight & Q&A Nuance</th>
+        </tr>
+      </thead>
+      <tbody id="respBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const QNA_DATA = [{"id": "J01", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 3 & Slide 10", "owner": "Roy / Joshua", "question": "Why keep 'Saga 50+ Flex' under the Saga name instead of launching a separate brand? And why did the Titan Travel redirect fail if Titan is already a separate brand?", "trap": "Jan loves Multi-Brand Strategy (Cathay/Dragonair, IHG Regent/Holiday Inn, Sino Gold Coast/Fullerton) from his Oct 2 & MKT(1) recordings. Show you understand brand dilution vs. hidden brand switching.", "spoken": "Multi-brand strategy works when separate brands protect distinct positioning without diluting the core image, just like Cathay and Dragonair or Marriott's sub-brands. Using 'Saga 50+ Active Horizons' as a fenced sub-tier captures Saga's 75-year trust without alienating 70+ cruise loyalists. Titan Travel failed on Trustpilot not because it is a sister brand, but because Saga secretly bounced buyers to a Titan checkout link without warning, breaking trust at the payment step.", "theory": "Multi-Brand Strategy & Brand Dilution Avoidance (Jan's Oct 2 & MKT(1) Recordings)", "data": "2026 Trustpilot Titan Travel payment-redirect complaint; 6/10 reject 'elderly' labels (Slide 3 & Slide 10)."}, {"id": "J02", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 11", "owner": "Hussain", "question": "You say empower Tour Managers to issue credits during disruptions. What if a guest demands more than the Tour Manager's limit, or gets angry about the voucher later?", "trap": "Jan taught a specific 4-step frontline recovery workflow on Oct 30 and Sept 17 (paraphrase to confirm -> clarify facts/urgency -> resolve within authority OR escalate with ownership -> explain terms clearly). Mentioning this exact flow scores huge marks.", "spoken": "A complaining guest still has hope in the brand, so recovery is a critical Moment of Truth. Under our SOP, Tour Managers first paraphrase the issue back to confirm facts, resolve immediately within a pre-set meal or excursion credit cap, and if the request exceeds their limit, they escalate to head office with personal ownership rather than passing the guest around. They also explain credit terms clearly on the spot so the compensation never triggers a second complaint.", "theory": "Service Recovery Protocol: Paraphrase, Authority vs. Escalate with Ownership, Voucher Clarity (Jan's Sept 17 & Oct 30 Recordings)", "data": "Trustpilot 2026 'sketchy' ship-fault comms complaint; 2-hourly update SOP + pre-authorised credits (Slide 11)."}, {"id": "J03", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 11 & Slide 12", "owner": "Roy / Hussain", "question": "Marketing plans look great on slides, but how do you stop service quality from dropping when star Tour Managers go off shift or rotate?", "trap": "Jan repeatedly stressed in his Sept 11 and Nov 19 recordings that 'good staff eventually go off shift' and 'Operations are the real brand owners who interpret your marketing promise.'", "spoken": "Because great frontline staff inevitably rotate off shift, consistency cannot rely on individual memory. That is why Slide 11 puts Operations at the centre of execution: our Single-CRM accessibility tag auto-syncs mobility and diet notes to every airline, coach, hotel, and Tour Manager, and our 14-day pre-trip concierge check standardises delivery before departure regardless of who is on duty.", "theory": "Operations as Brand Owners & Shift-to-Shift Consistency (Jan's Sept 11 & Nov 19 Recordings)", "data": "4-step Service Blueprint + 14-day pre-trip check + Named Tour Manager profiles (Slides 10 & 11)."}, {"id": "J04", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 9 & Slide 12", "owner": "Roy / Maxton", "question": "You want CRM tags, a 14-day concierge check, and companion credits. You can't just wear a marketing hat and spend freely: where is the ROI and budget control?", "trap": "In his Sept 17 recording, Jan warned students about the 'Three Conflicting Objectives' (satisfy customer, finite resources/predetermined budget line, short-term vs. long-term ROI).", "spoken": "We respect finite resources by sequencing spend on Slide 12. Phase 1 in Q1 focuses on zero-CapEx quick wins like Pace Grades, copy updates, and the disruption SOP to stop complaints immediately. Phase 2 CRM and modular tiers are tracked under Cost Control against chauffeur opt-out savings and customer acquisition cost, keeping ROI tied directly to lifting Holidays underlying PBT margin from 7.6% to 9.0% over 18 months.", "theory": "Predetermined Budget Line, ROI & Conflicting Objectives (Jan's Sept 17 & Sept 11 Recordings)", "data": "Holidays PBT 14.0M GBP (approx. 144.0M HKD) at 7.6% margin -> 9.0% target; chauffeur opt-out savings tracked in Cost Control (Slide 12)."}, {"id": "J05", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 8 & Slide 9", "owner": "Maxton", "question": "If you start giving shoulder-season dining credits or a free 45-day change, won't guests permanently expect freebies every time and complain later?", "trap": "Jan warned in MKT(2) and Sept 3 (ECM) that throwing in random free extras resets customer expectations permanently. Show how clear fences manage expectations.", "spoken": "Under Expectation Confirmation, unplanned freebies do inflate baseline expectations dangerously. That is why every perk in our Price Architecture carries explicit segmentation fences: dining or activity credits apply strictly to published off-peak shoulder dates, and the risk-reducing guarantee is clearly capped at one free date or tier change up to 45 days pre-departure. Clear upfront rules manage expectations rather than distorting them.", "theory": "Expectation Management & Expectation Confirmation Model (Jan's Sept 3, Oct 16 & MKT(2) Recordings)", "data": "Slide 9 Price Architecture: Good-Better-Best versioning + 1 free change up to 45 days + off-peak yield fences."}, {"id": "J06", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 8 & Slide 10", "owner": "Maxton / Hussain", "question": "Saga's website already lists general 'activity levels' and lets guests opt out of travel insurance. Why is your Pace Grade and modular chauffeur idea any different?", "trap": "Jan's Oct 29 recording literally used a senior tour example: 'be ultra-specific (draw the whole picture): walking time, coach vs. foot, resting seats, nearby cafes, because 1 hour of free walking is painful for mobility-limited guests.'", "spoken": "Saga's existing insurance opt-out actually proves modular pricing is operationally feasible for them. However, vague 'activity levels' still leave guests surprised by rushed coaches on Trustpilot, so our Pace Grades 1 to 3 spell out exact walking steps, rest intervals, and seated cafe stops. Extending opt-in flexibility to the shared airport chauffeur directly fixes the main rigid bundle rejected by 5/10 active 50 to 59 interviewees.", "theory": "Ultra-Specific Senior Communication ('Draw the Whole Picture') & Service-Dominant Logic (Jan's Oct 29 & Oct 2 Recordings)", "data": "3/10 walking stamina limits; 5/10 active 50-59s doubt fixed airport cars; 8/10 open to Basic + Optional Extras."}, {"id": "J07", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 2, Slide 6 & Slide 8", "owner": "Maxton / Hussain", "question": "The shared door-to-door chauffeur is Saga's most famous USP. Isn't unbundling it throwing away what makes Saga special?", "trap": "Use Jan's Marketing Myopia (falling in love with your own product like Nokia) + Service-Dominant Logic (goods/cars are just a mechanism for service) + his Oct 30 'hotel taxi responsibility boundary' example.", "spoken": "Forcing one legacy feature onto every customer even when needs shift is classic Marketing Myopia. Under Service-Dominant Logic, the chauffeur car is just one delivery mechanism for stress-free travel. Also, just as a hotel gets blamed until a guest boards a taxi, third-party shared chauffeur delays hurt Saga's brand. Keeping chauffeurs in Full Care while letting Core Flex 50 to 59 guests swap for rail, lounge, or hotel credit protects the USP without forcing it on the 5/10 who want flexibility.", "theory": "Marketing Myopia, Service-Dominant Logic & Third-Party Responsibility Boundary (Jan's Sept 4, Oct 2 & Oct 30 Recordings)", "data": "3/10 chose car transfer as top appeal (R5, R7, R8) while 5/10 active 50-59s doubted fixed transfers (R1, R2, R3, R6, R8)."}, {"id": "J08", "category": "Jan's Off-Slide Traps", "difficulty": "Jan's Favourite", "slide": "Slide 4, Slide 5 & Slide 10", "owner": "Morris / Hussain", "question": "Most of your 50 to 59 interviewees already travel independently (free and easy). What actually triggers them to switch brands to Saga Holidays?", "trap": "Jan's Sept 11 summary states that the #1 goal of market research is finding 'brand-switching triggers.' Also mention Jan's Oct 30 warning: never tell older guests 'just go check our website or scan a QR code.'", "spoken": "Our interviews pinpointed the exact brand-switching trigger: 9 out of 10 want an operator to handle stressful itinerary logistics, and 8 of the 9 who answered paid a 20% premium for assisted comfort, yet 6 in 10 refuse to book anything labelled an 'elderly tour.' By removing the elderly stigma, unbundling fixed cars, and offering warm click-to-call support rather than forcing digital-only web hoops, Saga removes the exact barrier stopping independent 50 to 59s from switching.", "theory": "Brand-Switching Triggers & Anti-QR-Only Senior Access (Jan's Sept 11 & Oct 30 Recordings)", "data": "9/10 want operator logistics; 8/9 answered chose Assisted Tour (6,000 HKD / approx. 583 GBP); 6/10 reject 'elderly tour'."}, {"id": "Q01", "category": "Top Lecturer Traps", "difficulty": "High Probability", "slide": "Slide 5 & Slide 12", "owner": "Morris / Roy", "question": "Your interviewees are Hong Kong adults aged 50+, yet Saga Holidays is a UK tour operator. Isn't that a major mismatch?", "trap": "Do not claim Hong Kong retirees behave identically to British retirees. Acknowledge the geographical limit immediately, then pivot to psychographic patterns and your UK pilot control.", "spoken": "We state that limitation openly on Slide 5. Our ten Hong Kong interviews were used to model psychographic and behavioural patterns of active 50 to 59 travellers, such as rejecting elderly labels and wanting modular transport, rather than assuming identical UK pricing or destinations. That is exactly why our Consumer Control on Slide 12 tests these findings with a UK 50 to 59 pilot panel before full rollout.", "theory": "Marketing Research Validity & Marketing Management Cycle Consumer Control (Lecture 2 & Lecture 7)", "data": "N = 10 HK adults aged 50+ (seven 50-54, two 55-59, one 70-74); UK 50-59 pilot validation built into Slide 12."}, {"id": "Q02", "category": "Hospitality Marketing Theory", "difficulty": "High Probability", "slide": "Slide 1 & Slides 8-11", "owner": "Roy / Hussain", "question": "In services marketing there are 7Ps. Why did your group only redesign four pillars instead of covering all seven?", "trap": "Jan Chau specifically told the class on Nov 19 that going deep on 3 to 4 key Ps beats listing all 7Ps superficially. Emphasize strategic focus and coherence.", "spoken": "In Lecture 5, the 7Ps work as a coherent system rather than a checklist. Spreading a 14-minute consulting pitch thin across all seven Ps weakens execution, so we prioritised the four highest-friction pillars from our interview and Trustpilot gaps: Product, Price, Place and Promotion, and Process and People, including a servicescape audit on Slide 11 so physical evidence still aligns.", "theory": "7Ps as a Coherent System & Service Extensions (Lecture 5); Focused 4-Pillar Pitch Rule (Nov 19 Recording)", "data": "All 4 service gaps on Slide 6 map directly to Product, Price, Place/Promotion, and Process/People/Servicescape."}, {"id": "Q03", "category": "Hospitality Marketing Theory", "difficulty": "High Probability", "slide": "Slide 11 & Slide 12", "owner": "Hussain / Roy", "question": "How do you make sure frontline staff and Tour Managers actually execute this plan instead of leaving it on paper?", "trap": "In the Nov 19 lecture, Jan Chau stressed that marketing plans fail when line managers and operations are left out. Always connect marketing promises to operations ownership.", "spoken": "Lecture 7 highlights that marketing plans fail when operations and line managers are excluded. On Slide 11, our Service Blueprint assigns one single CRM accessibility tag from booking to the Tour Manager so staff are not blindsided, and we pre-authorise Tour Managers to issue meal or excursion credits during disruptions rather than waiting on head office.", "theory": "Why Marketing Plans Fail / Operations Alignment (Lecture 7) & Service Blueprint / Moments of Truth (Lecture 5)", "data": "4-step Service Blueprint + 14-day pre-trip concierge check + 2-hourly fault updates."}, {"id": "Q04", "category": "Primary Data (N = 10)", "difficulty": "High Probability", "slide": "Slide 4 & Slide 5", "owner": "Morris", "question": "Why did you include R5 who took zero trips in three years, and R4 who is 70 to 74, if your target segment is Active 50 to 59 Comfort-Seekers?", "trap": "Show that including contrast cases proves MASDA 'Differentiable' rather than contaminating your sample.", "spoken": "Including R4 and R5 directly proves the Differentiable criterion in MASDA on Slide 4. R5 is aged 50 to 54 with zero trips and disagrees with paying extra for comfort, showing why age alone is a poor predictor. R4 is aged 70 to 74 and values zero single supplement, all-inclusive pricing, and family booking help, showing how our 50 to 59 modular tier differs from Saga's 70+ core.", "theory": "Psychographic & Behavioural Segmentation vs. Demographics + MASDA Differentiable Criterion (Lecture 6)", "data": "N = 10: 8 active 50-59s, 1 active 70-74 (R4), 1 non-traveller 50-54 contrast (R5)."}, {"id": "Q05", "category": "Financials & Cannibalisation", "difficulty": "High Probability", "slide": "Slide 2, Slide 7 & Slide 9", "owner": "Roy / Maxton", "question": "Won't launching 'Saga 50+ Flex' cannibalise Saga's high-yield Ocean Cruises or hurt Holidays' 7.6% profit margin?", "trap": "Use Lecture 7's Ansoff cannibalisation concept and Lecture 5's segmentation fences and Good-Better-Best versioning.", "spoken": "We prevent cannibalisation in two ways. First, Ocean Cruises only have two ships capped at 987 guests and are already 92% to 93% full, so Holidays acts as an entry funnel that feeds younger 50 to 59 guests into cruises later. Second, we use Good-Better-Best tiers and shoulder-season value credits instead of price cuts, lifting Holidays PBT margin from 7.6% to 9.0%.", "theory": "Ansoff Product Development, Cannibalisation & Segmentation Fences (Lecture 5 & Lecture 7)", "data": "Ocean Cruise 92-93% load, 440 GBP (approx. 4,527 HKD) per diem; Holidays 60,800 guests, 7.6% margin (14.0M GBP / approx. 144.0M HKD)."}, {"id": "Q06", "category": "Hospitality Marketing Theory", "difficulty": "High Probability", "slide": "Slide 2 & Slide 9", "owner": "Joshua / Maxton", "question": "How do service characteristics like perishability and inelastic supply apply to Saga Holidays?", "trap": "Do not just define perishability. Link it directly to unsold tour seats/cabins and why you chose value credits over discounts (which also makes bundles harder to price-compare, per Jan's MKT(1) recording).", "spoken": "In Lecture 3, tourism capacity is perishable and supply is inelastic in the short term. Saga cannot quickly add a third boutique Ocean ship when load factors hit 92% to 93%, so growth must come from Holidays. And when Holidays has unsold shoulder-season seats, offering dining or excursion credits fills perishable capacity without damaging Saga's premium price signal or triggering direct price wars.", "theory": "Perishability, Short-Term Inelastic Supply & Price as a Quality Signal (Lecture 3, Lecture 5 & MKT(1) Recording)", "data": "Ocean ships max 987 guests; shoulder-season dining/activity credits in Pillar 2 (Slide 9)."}, {"id": "Q07", "category": "Hospitality Marketing Theory", "difficulty": "Medium-High", "slide": "Slide 6 & Slide 13", "owner": "Hussain", "question": "If customers praise Saga's chauffeur service and Tour Managers, why is Saga still getting complaints?", "trap": "Apply Kotler's Five Product Levels (Expected vs. Augmented) and SERVQUAL dimensions (Empathy vs. Reliability/Responsiveness).", "spoken": "Kotler, Bowen, and Makens (2009) explain that a chauffeur transfer is an Augmented feature, whereas accurate pre-trip instructions, confirmed mobility seating, and clear fault updates belong to the Expected Product. When Expected basics fail during disruptions, SERVQUAL reliability and responsiveness collapse, and an augmented perk cannot rescue overall satisfaction.", "theory": "Kotler's Five Product Levels (Lecture 4) & SERVQUAL Reliability/Responsiveness vs. Empathy (Lecture 1)", "data": "Trustpilot 4.3/5 (3,202 reviews) shows strong frontline Empathy alongside pre-trip admin and disruption comms complaints."}, {"id": "Q08", "category": "Hospitality Marketing Theory", "difficulty": "Medium-High", "slide": "Slide 8", "owner": "Maxton", "question": "What does 'Universal first; assistance by choice' mean in plain English, and how does it show up in your product?", "trap": "Explain the dignity principle from Lecture 5: design for everyone first without stereotyping seniors as frail, and let guests opt into extra support.", "spoken": "From Lecture 5, universal first and assistance by choice means building clear, comfortable defaults for everyone without treating 50 to 59 guests as helpless. In Pillar 1, Pace Grades 1 to 3 give universal walking and rest transparency to every guest, while airport transfers and adapted seating become opt-in modules that guests choose for themselves.", "theory": "Design for Diverse Ability, Mass Customization & Customer-Dominant Co-Creation (Lecture 5; Fan et al., 2025)", "data": "9/10 want operator logistics, 5/10 active 50-59s question fixed airport cars, 3/10 report walking limits."}, {"id": "Q09", "category": "Hospitality Marketing Theory", "difficulty": "Medium-High", "slide": "Slide 9", "owner": "Maxton", "question": "Why not just lower Saga's base tour price to attract younger 50 to 59 buyers?", "trap": "Use Total Sacrifice (Money, Time, Effort, Risk), Jan's Signaling Theory (price = quality cue), and your C2/C2b interview numbers.", "spoken": "Lecture 5 teaches that buyers weigh Total Sacrifice across money, time, effort, and risk, while price also acts as a quality signal. Direct discounting trains guests to wait for sales. In our interviews, 8 of the 9 people who answered chose the 6,000 HKD (approx. 583 GBP) assisted tour over the 5,000 HKD (approx. 486 GBP) standard option, and 8 in 10 would pay 6,500 to 8,000+ HKD (approx. 632 to 778+ GBP). Removing hidden fees and deposit penalties cuts risk sacrifice far better than a discount.", "theory": "Perceived Value vs. Total Sacrifice & Signaling Theory (Lecture 5 & Jan's Sept 3 / Nov 5 Recordings)", "data": "8/9 answered chose Assisted (6,000 HKD / approx. 583 GBP); 8/10 WTP 6,500-8,000+ HKD (approx. 632-778+ GBP); 7/10 top trust is zero hidden fees."}, {"id": "Q10", "category": "7Ps & Operations", "difficulty": "Medium-High", "slide": "Slide 5 & Slide 10", "owner": "Hussain / Morris", "question": "If 9 out of 10 interviewees discover trips online, why keep phone advisors and printed/PDF family trip sheets?", "trap": "Connect Consumer Analysis (Buyers, Users, Influencers) to Omnichannel Place and Jan's Oct 30 warning not to force older guests online-only.", "spoken": "In Lecture 2 and Lecture 5, the person searching online is not always the sole decision-maker or booker. While 9 in 10 discover trips digitally, 3 in 10 rely on children or relatives to book and 5 in 10 leave the final decision to a spouse or child. Omnichannel means smooth web discovery backed by click-to-call human advisors and a one-click WhatsApp or PDF family summary so nobody is left stranded online.", "theory": "Consumer Analysis: Buyers, Users & Influencers (Lecture 2) + Omnichannel Dual-Target Place (Lecture 5 & Oct 30 Recording)", "data": "9/10 digital discovery; 4/9 active travellers book via web/apps, 3/9 via family; 5/10 final decision by spouse (4) or child (1)."}, {"id": "Q11", "category": "Primary Data (N = 10)", "difficulty": "Medium", "slide": "Slide 5 & Slide 9", "owner": "Morris / Maxton", "question": "Why does your chart say '8/9 answered' on the assisted tour choice when your sample is N = 10?", "trap": "Show complete command of your dataset: R10 left C2 blank but still answered C2b!", "spoken": "Good catch. Nine of our ten interviewees answered the binary choice between the 5,000 HKD (approx. 486 GBP) and 6,000 HKD (approx. 583 GBP) tours, and 8 of those 9 chose the assisted option. Respondent R10 left that single checkbox blank, yet she still rated her maximum willingness to pay for the assisted tour at 7,000 HKD (approx. 680 GBP) in the very next question.", "theory": "Research Rigour & Transparent Reporting (Assessment Brief Criterion 5)", "data": "C2 answered by 9/10 (8 chose Option B, R9 chose Option A at 5,000 HKD / approx. 486 GBP); R10 WTP = 7,000 HKD (approx. 680 GBP)."}, {"id": "Q12", "category": "Primary Data (N = 10)", "difficulty": "Medium", "slide": "Slide 8 & Slide 9", "owner": "Maxton", "question": "Wait: 3 out of 10 interviewees picked airport car transfer as their most appealing feature, yet you want to unbundle it. Why?", "trap": "Explain Mass Customization: unbundling does not remove the chauffeur, it makes it opt-in so both groups win.", "spoken": "That tension is exactly why modular design works better than a fixed bundle. Three interviewees loved the airport transfer and R10 said she would pay extra for it, while five active 50 to 59 interviewees doubted fixed airport cars because they want flexibility to choose their own transport. Making transfers opt-in keeps Full Care guests happy while letting Core Flex guests swap for rail or lounge credit.", "theory": "Mass Customization & Facilitating vs. Supporting Elements (Lecture 5)", "data": "C1a Car transfer top for 3/10 (R5, R7, R8); C1b questioned for flexibility by 5/10 active 50-59s (R1, R2, R3, R6, R8); 8/10 open to Basic + Extras (C2d)."}, {"id": "Q13", "category": "7Ps & Operations", "difficulty": "Medium", "slide": "Slide 11", "owner": "Hussain", "question": "Where is Physical Evidence (Servicescape) in your four pillars?", "trap": "Point directly to the bottom card on Slide 11, mention Bitner (1992), and echo Jan's Oct 30 physical details (bright lighting for older eyes, waiting seats, clear readable fonts, non-slip floors).", "spoken": "We integrated Physical Evidence directly into Pillar 4 on Slide 11 using Bitner's 1992 Servicescape model so it reinforces our people and process upgrades. Specifically, we audit coaches, ships, and partner hotels across ambient conditions like bright lighting for older eyes, spatial layout like quiet social corners and resting seats, non-slip surfaces, and large-print signage.", "theory": "Servicescape Dimensions (Bitner, 1992; Lecture 1, Lecture 5 & Oct 30 Recording)", "data": "Slide 11 bottom card: Bitner (1992), Fan et al. (2025) quiet social corners, Rosa et al. (2020) resting seats & readable signage."}, {"id": "Q14", "category": "Hospitality Marketing Theory", "difficulty": "Medium", "slide": "Slide 12", "owner": "Roy", "question": "If Holidays bookings rise in Q1 but Trustpilot scores do not improve, what does your control system do?", "trap": "Reference Lecture 7's Boston hotel lesson ('reading the numbers with the guest in mind') plus Jan's Oct 29 emphasis on evaluating two-way campaign feedback.", "spoken": "In Lecture 7's Boston hotel case, watching sales numbers without guest feedback leads managers astray. That is why Slide 12 pairs quantitative sales and PBT margin controls with qualitative Consumer Controls, tracking post-trip tNPS, Trustpilot pre-trip complaint share, and quarterly feedback from a UK 50 to 59 pilot panel so we can adjust pacing or handoffs immediately.", "theory": "Marketing Management Cycle Evaluation & Reading the Numbers with the Guest in Mind (Lecture 7)", "data": "Slide 12 four controls: Sales (bookings by age, solo share), Cost (chauffeur opt-out savings, CAC), Profit (7.6% to 9.0% PBT margin), Consumer (-30% pre-trip complaints)."}, {"id": "Q15", "category": "Citations & Methods", "difficulty": "Medium", "slide": "Slide 3 & Slide 14", "owner": "Joshua / Roy", "question": "Why is Titan Travel listed under Weaknesses on Slide 3 instead of Threats?", "trap": "Show you know Saga plc's corporate structure: Titan Travel is Saga's sister brand, not an external rival.", "spoken": "Titan Travel is actually a sister brand inside Saga plc rather than an external competitor. On Trustpilot in 2026, customers booking through Saga were unexpectedly redirected to a Titan Travel payment link, which created confusion and eroded trust. Placing it under Weaknesses reflects an internal channel integration issue that we fix with a unified Saga checkout on Slide 10.", "theory": "Internal Weaknesses vs. External Threats in SWOT (Lecture 4 & Lecture 7)", "data": "Saga plc (2026) corporate structure; 2026 Trustpilot payment-redirect review."}];
+const JAN_DATA = [{"num": "01", "title": "Operations Are the Real Brand Owners (Shift Consistency)", "source": "Sept 11 Summary & Nov 19 Recording", "what_jan_said": "Besides the customer and the paying boss, Operations matter most because they interpret your brand promise live, and good staff eventually go off shift ('take turns').", "saga_move": "Drop this when defending Slide 11: 'Our Single-CRM tag and 14-day pre-trip checklist make sure mobility and diet needs survive shift handovers rather than relying on one star employee.'"}, {"num": "02", "title": "4-Step Service Recovery: Paraphrase -> Clarify -> Authority or Escalate with Ownership", "source": "Sept 17 & Oct 30 Recordings", "what_jan_said": "Complaining guests still have hope. Staff must paraphrase the complaint back, resolve within a clear compensation cap OR escalate with personal ownership, and explain voucher expiry/terms so it does not cause a second complaint.", "saga_move": "Drop this on Slide 11 Q&A: 'Pre-authorised Tour Manager credits handle routine faults fast, while bigger disruptions are escalated with ownership alongside 2-hourly updates and clear on-trip credit terms.'"}, {"num": "03", "title": "Ultra-Specific Senior Comms ('Draw the Whole Picture' / 畫公仔畫出腸)", "source": "Oct 29 & Oct 30 Recordings", "what_jan_said": "For senior tours, spell out walking time, coach vs. foot, resting seats, and nearby cafes (1 hour of free walking hurts guests with mobility limits). Never force older guests into QR-only or 'just check the website' hoops.", "saga_move": "Use this to justify Slide 8 Pace Grades (exact steps, rest intervals, cafe stops) and Slide 10 omnichannel phone handover + WhatsApp/PDF sheets."}, {"num": "04", "title": "Multi-Brand Strategy & Brand Dilution Avoidance", "source": "Oct 2 Summary & MKT(1) Recording", "what_jan_said": "Groups like Cathay/Dragonair, IHG (Regent vs. Holiday Inn), Marriott (W vs. Courtyard), and Sino (Gold Coast vs. Fullerton) separate brands so distinct customer groups do not dilute each other's image.", "saga_move": "Use this to defend 'Saga 50+ Active Horizons' as a fenced sub-tier (protects 70+ loyalty while attracting 50-59s) AND to explain why silent Titan Travel payment redirects broke brand trust."}, {"num": "05", "title": "Expectation Management & 'Don't Accidentally Reset Expectations'", "source": "Sept 3 Summary, Oct 16 & MKT(2) Recordings", "what_jan_said": "Satisfaction is actual service minus expectation (ECM). Randomly throwing in luxury freebies permanently shifts baseline expectations upward and triggers future complaints.", "saga_move": "Explain that Pace Grades lower false expectations upfront, while shoulder-season credits and the 45-day free change use clear segmentation fences so expectations stay controlled."}, {"num": "06", "title": "Marketing Hat + Budget Line + 3 Conflicting Objectives", "source": "Sept 11 Summary & Sept 17 Recording", "what_jan_said": "Never design marketing with unlimited fantasy budgets. Balance (1) acceptable customer satisfaction, (2) predetermined budget/ROI, and (3) short-term vs. long-term brand building.", "saga_move": "Point to Slide 12's zero-CapEx Phase 1 quick wins (0 to 3 months) before Phase 2 CRM spend, funded by chauffeur opt-out savings tracked under Cost Control."}, {"num": "07", "title": "Value Bundles Beat Blunt Discounts (Price = Quality Signal)", "source": "Sept 3, Nov 5, Nov 19 & MKT(1) Recordings", "what_jan_said": "Signaling Theory: price cues quality. Frequent discounts train buyers to wait for sales (fast fashion), whereas value bundles (like buy-2-get-1 or Japanese combo tiers) lift volume and prevent direct price comparison.", "saga_move": "Justify Slide 9's Good-Better-Best versioning and shoulder-season dining/activity credits over 10% discounts: protects Saga's premium signal and makes bundles unique against Riviera and TUI."}, {"num": "08", "title": "Third-Party Boundary ('Still Your Guest Until They Board the Taxi') & Process Visibility", "source": "Oct 30 Recording", "what_jan_said": "Hotels escort guests into taxis because any wait is blamed on the hotel until boarding. Like open kitchens or live delivery tracking, showing process status calms waiting anxiety.", "saga_move": "Connect this to Saga's third-party shared chauffeurs (delays hurt Saga's brand, so make them opt-in) and the 14-day pre-trip concierge check (gives guests process visibility before flying)."}, {"num": "09", "title": "Brand-Switching Triggers & Two-Way Feedback Loops", "source": "Sept 11 Summary & Nov 13 Recording", "what_jan_said": "The goldmine in market research is what makes buyers SWITCH brands, and real marketing (unlike one-way TV ads) uses two-way feedback loops to measure real sales lift.", "saga_move": "Explain that 9/10 want planning hassle removed while 6/10 reject 'elderly' labels: fixing that gap is the switch trigger moving independent 50-59s into Saga, verified by quarterly UK pilot feedback."}, {"num": "10", "title": "Service-Dominant Logic (SDL), Marketing Myopia & Luxury Etiquette", "source": "Sept 4, Oct 2 & Oct 30 Recordings", "what_jan_said": "Under SDL, tangible features (cars/rooms) are only delivery mechanisms for service; loving an outdated feature (like Nokia) is Marketing Myopia. In luxury training, never rush or walk ahead of a slow older guest.", "saga_move": "Tie SDL + Marketing Myopia to unbundling fixed chauffeurs (core value is stress-free travel, not a mandatory shared car), and tie luxury pacing/dignity to Slide 11's 'ask before helping' staff SOP."}];
+const THEORY_DATA = [{"term": "Sense and Respond (Marketing Concept)", "lecture": "Lecture 1 & 2 | Slide 1", "plain": "Instead of forcing old company habits onto buyers ('make and sell'), Saga listens to real customer pain points first and designs tours around them.", "hook": "Every recommendation starts from our N = 10 interviews and Trustpilot reviews, not internal Saga habits."}, {"term": "Perishability & Inelastic Supply", "lecture": "Lecture 3 | Slides 2 & 9", "plain": "Unsold tour seats or cruise cabins expire tonight and cannot be stored, and Saga cannot build a new ship overnight.", "hook": "Ocean ships are 92-93% full (inelastic supply), so Holidays scales growth and uses off-peak credits instead of price cuts."}, {"term": "Kotler's 5 Product Levels (Expected vs. Augmented)", "lecture": "Lecture 4 | Slides 6 & 13", "plain": "Expected Product is the basic reliability every buyer assumes (clear info, confirmed seats); Augmented is extra perks (chauffeur). Extras cannot save broken basics.", "hook": "Saga's chauffeur is a great Augmented perk, but broken pre-trip admin and fault updates violate the Expected Product."}, {"term": "SERVQUAL & Co-Production / Value Co-Destruction", "lecture": "Lecture 1 & 3 | Slide 6", "plain": "Service quality depends on Reliability and Responsiveness, not just staff warmth (Empathy). Making seniors fight clunky booking links destroys value.", "hook": "Frontline staff score high on Empathy, but multi-call seat chasing and payment redirects hurt Reliability and cause digital co-destruction (Li et al., 2025)."}, {"term": "Psychographic/Behavioural STP & MASDA", "lecture": "Lecture 6 | Slide 4", "plain": "Age alone is lazy segmentation; attitudes and travel habits matter more. MASDA tests if a segment is Measurable, Accessible, Substantial, Differentiable, Actionable.", "hook": "Active 50-59 Comfort-Seekers reject 'elderly' tags (6/10) and pass all 5 MASDA checks, distinct from 70+ legacy guests and non-traveller R5."}, {"term": "Universal First; Assistance by Choice", "lecture": "Lecture 5 | Slide 8", "plain": "Design clear, accessible experiences for everyone without treating older guests as frail, and let them opt into extra assistance.", "hook": "Pace Grades 1-3 give universal clarity to all guests, while airport transfers and adapted seats become opt-in modules."}, {"term": "Perceived Value vs. Total Sacrifice", "lecture": "Lecture 5 | Slide 9", "plain": "Customers weigh four costs: Money, Time, Effort, and Risk. Cutting risk and hidden fees creates more value than slashing ticket prices.", "hook": "8/9 who answered paid a 20% premium (6,000 vs. 5,000 HKD / approx. 583 vs. 486 GBP) for assisted comfort; zero hidden fees (7/10) and a 45-day free change cut Risk sacrifice."}, {"term": "Service Blueprint, Moments of Truth & Servicescape", "lecture": "Lecture 1 & 5 | Slide 11", "plain": "A Service Blueprint connects front-stage staff to back-stage systems so handoffs do not drop; Moments of Truth are disruptions; Servicescape is physical surroundings.", "hook": "One CRM accessibility tag stops 4-call chases, empowered Tour Managers turn faults into Moments of Truth, and Bitner (1992) guides lighting, quiet corners, and signage."}, {"term": "Ansoff Product Development & 4 Controls", "lecture": "Lecture 7 | Slides 7 & 12", "plain": "Product Development launches new modular tours ('Saga 50+ Flex') to Saga's existing 50+ market, monitored across Sales, Cost, Profit, and Consumer controls.", "hook": "Bundle fences prevent cruise cannibalisation, and quarterly UK 50-59 pilot checks ensure we read the numbers with the guest in mind."}];
+const RESP_DATA = [{"id": "R1", "age": "50-54", "gender": "Male", "work": "Full-time (IT Manager)", "income": "30,000-49,999 HKD (approx. 2,916-4,859 GBP)", "trips": "1-2 trips", "book": "Travel website/app", "decide": "Spouse", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "7,500 HKD (approx. 729 GBP)", "pricing": "Either", "note": "Wants relaxed pace & freedom; doubts fixed airport car for flexibility; rejects 'Elderly tour'."}, {"id": "R2", "age": "50-54", "gender": "Female", "work": "Full-time (Clerical)", "income": "30,000-49,999 HKD (approx. 2,916-4,859 GBP)", "trips": "6+ trips", "book": "Travel website/app", "decide": "Myself", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "8,000+ HKD (approx. 778+ GBP)", "pricing": "Basic + optional extras", "note": "Values tour manager & similar-age companions; doubts fixed car so she can pick her own vehicle."}, {"id": "R3", "age": "50-54", "gender": "Male", "work": "Full-time (Healthcare)", "income": "30,000-49,999 HKD (approx. 2,916-4,859 GBP)", "trips": "6+ trips", "book": "Travel website/app", "decide": "Myself", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "7,500 HKD (approx. 729 GBP)", "pricing": "Basic + optional extras", "note": "Difficulty walking far (L3); top priority is relaxed pace; doubts fixed airport car transfer."}, {"id": "R4", "age": "70-74", "gender": "Female", "work": "Retired (Toy Manager)", "income": "30,000-49,999 HKD (approx. 2,916-4,859 GBP)", "trips": "6+ trips", "book": "Children/friends arrange", "decide": "N/A (blank)", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "6,000 HKD (approx. 583 GBP)", "pricing": "All-inclusive", "note": "Legacy 70+ core contrast: active (no mobility limits), top priority is zero single supplement, all-inclusive, meeting tour manager."}, {"id": "R5", "age": "50-54", "gender": "Female", "work": "Homemaker", "income": "30,000-49,999 HKD (approx. 2,916-4,859 GBP)", "trips": "0 trips (Non-traveller)", "book": "N/A (non-traveller)", "decide": "N/A", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "6,000 HKD (approx. 583 GBP)", "pricing": "Basic + optional extras", "note": "Non-traveller contrast: budget-constrained, disagrees with paying more for comfort (L4b=2), difficulty walking far."}, {"id": "R6", "age": "50-54", "gender": "Female", "work": "Full-time (Teacher)", "income": "Prefer not to say", "trips": "6+ trips", "book": "Children/friends arrange", "decide": "Spouse", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "7,500 HKD (approx. 729 GBP)", "pricing": "Either", "note": "Travels independently with family; doubts fixed airport car ('can call own car'); rejects 'Elderly tour'."}, {"id": "R7", "age": "50-54", "gender": "Female", "work": "Part-time (Food service)", "income": "15,000-29,999 HKD (approx. 1,458-2,916 GBP)", "trips": "3-5 trips", "book": "Travel agent shop", "decide": "Myself", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "6,500 HKD (approx. 632 GBP)", "pricing": "All-inclusive", "note": "Only respondent who books at a physical travel shop; values airport transfer & TIC licence; rejects 'Elderly tour'."}, {"id": "R8", "age": "55-59", "gender": "Male", "work": "Full-time (Manager)", "income": "80,000+ HKD (approx. 7,775+ GBP)", "trips": "6+ trips", "book": "Social media / YouTube", "decide": "Spouse", "choice": "Option B: 6,000 HKD (approx. 583 GBP)", "wtp": "8,000+ HKD (approx. 778+ GBP)", "pricing": "Either", "note": "High-spend long-haul traveller (40,000+ HKD/yr, approx. 3,888+ GBP/yr); values comfort & similar-age peers."}, {"id": "R9", "age": "55-59 (logged under-50 raw; retired at 55)", "gender": "Prefer not to say", "work": "Retired civil servant", "income": "Prefer not to say", "trips": "6+ trips", "book": "Children/friends arrange", "decide": "Children", "choice": "Option A: 5,000 HKD (approx. 486 GBP)", "wtp": "7,500 HKD (approx. 729 GBP)", "pricing": "Either", "note": "Only Option A chooser (value-for-money), but switch price to B is 7,500 HKD (approx. 729 GBP); difficulty walking far; dislikes 'Elderly tour'."}, {"id": "R10", "age": "50-54", "gender": "Female", "work": "Full-time (Clerical)", "income": "50,000-79,999 HKD (approx. 4,859-7,775 GBP)", "trips": "6+ trips", "book": "Airline/hotel website", "decide": "Spouse", "choice": "Blank on C2 (WTP B = 7,000 HKD / approx. 680 GBP)", "wtp": "7,000 HKD (approx. 680 GBP)", "pricing": "Basic + optional extras", "note": "10th respondent: top feature is zero single supplement; ticked car transfer in C1b & C1c noting 'convenient, won't get lost' (paid add-on)."}];
+
+let activeCategory = 'All';
+
+function initPills() {
+  const cats = ['All'].concat(Array.from(new Set(QNA_DATA.map(function(q) { return q.category; }))));
+  const container = document.getElementById('categoryPills');
+  container.innerHTML = cats.map(function(c) {
+    const isJan = c === "Jan's Off-Slide Traps";
+    const cls = 'pill' + (isJan ? ' jan-pill' : '') + (c === activeCategory ? ' active' : '');
+    const safeCat = c.replace(/'/g, "\\'");
+    return '<button class="' + cls + '" onclick="setCategory(\'' + safeCat + '\')">' + c + '</button>';
+  }).join('');
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  initPills();
+  renderAll();
+}
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('qnaSection').classList.toggle('hidden', tab !== 'qna');
+  document.getElementById('janSection').classList.toggle('hidden', tab !== 'jan');
+  document.getElementById('theorySection').classList.toggle('hidden', tab !== 'theory');
+  document.getElementById('dataSection').classList.toggle('hidden', tab !== 'data');
+}
+
+function copyText(btn, idx) {
+  navigator.clipboard.writeText(QNA_DATA[idx].spoken);
+  const old = btn.textContent;
+  btn.textContent = 'Copied Spoken Answer';
+  setTimeout(function() { btn.textContent = old; }, 1400);
+}
+
+function renderAll() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+
+  const filteredQ = QNA_DATA.filter(function(item) {
+    const matchCat = activeCategory === 'All' || item.category === activeCategory;
+    const hay = [item.id, item.category, item.slide, item.owner, item.question, item.trap, item.spoken, item.theory, item.data].join(' ').toLowerCase();
+    return matchCat && (!q || hay.indexOf(q) !== -1);
+  });
+
+  document.getElementById('qnaGrid').innerHTML = filteredQ.map(function(item) {
+    const origIdx = QNA_DATA.indexOf(item);
+    const isJan = item.category === "Jan's Off-Slide Traps";
+    return '<div class="card' + (isJan ? ' jan-card' : '') + '">' +
+      '<div class="card-top">' +
+        '<div>' +
+          '<span class="tag ' + (isJan ? 'tag-jan' : 'tag-cat') + '">' + item.id + ' | ' + item.category + '</span> ' +
+          '<span class="tag tag-slide">' + item.slide + '</span>' +
+        '</div>' +
+        '<span class="tag tag-owner">Lead: ' + item.owner + '</span>' +
+      '</div>' +
+      '<div class="q-title">' + item.question + '</div>' +
+      '<div class="trap-box"><strong>Watch Out:</strong> ' + item.trap + '</div>' +
+      '<div class="spoken-box"><strong>Say This Out Loud:</strong> "' + item.spoken + '"</div>' +
+      '<div class="meta-row">' +
+        '<div><strong>Course Theory / Source:</strong> ' + item.theory + '</div>' +
+        '<div><strong>Data Anchor:</strong> ' + item.data + '</div>' +
+        '<button class="copy-btn" onclick="copyText(this, ' + origIdx + ')">Copy Spoken Answer</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  const filteredJ = JAN_DATA.filter(function(j) {
+    const hay = [j.num, j.title, j.source, j.what_jan_said, j.saga_move].join(' ').toLowerCase();
+    return !q || hay.indexOf(q) !== -1;
+  });
+  document.getElementById('janGrid').innerHTML = filteredJ.map(function(j) {
+    return '<div class="card jan-card">' +
+      '<div class="card-top"><span class="tag tag-jan">Recording Secret ' + j.num + '</span><span class="tag tag-slide">' + j.source + '</span></div>' +
+      '<div class="q-title">' + j.title + '</div>' +
+      '<div class="jan-box"><strong>What Jan Stressed Out Loud:</strong> ' + j.what_jan_said + '</div>' +
+      '<div class="spoken-box"><strong>How to Use It for Saga Q&A:</strong> ' + j.saga_move + '</div>' +
+    '</div>';
+  }).join('');
+
+  const filteredT = THEORY_DATA.filter(function(t) {
+    const hay = [t.term, t.lecture, t.plain, t.hook].join(' ').toLowerCase();
+    return !q || hay.indexOf(q) !== -1;
+  });
+  document.getElementById('theoryGrid').innerHTML = filteredT.map(function(t) {
+    return '<div class="card">' +
+      '<div class="card-top"><span class="tag tag-cat">' + t.lecture + '</span></div>' +
+      '<div class="q-title">' + t.term + '</div>' +
+      '<div class="spoken-box"><strong>Plain English:</strong> ' + t.plain + '</div>' +
+      '<div class="meta-row"><div><strong>How It Applies to Saga:</strong> ' + t.hook + '</div></div>' +
+    '</div>';
+  }).join('');
+
+  const filteredR = RESP_DATA.filter(function(r) {
+    const hay = Object.values(r).join(' ').toLowerCase();
+    return !q || hay.indexOf(q) !== -1;
+  });
+  document.getElementById('respBody').innerHTML = filteredR.map(function(r) {
+    return '<tr>' +
+      '<td><strong>' + r.id + '</strong><br><span style="color:var(--muted)">Age ' + r.age + '</span></td>' +
+      '<td>' + r.gender + ' | ' + r.work + '<br><span style="color:var(--muted)">' + r.income + '</span></td>' +
+      '<td>' + r.trips + '<br><span style="color:var(--muted)">Book: ' + r.book + ' | Decide: ' + r.decide + '</span></td>' +
+      '<td>' + r.choice + '<br><span style="color:var(--gold)">Max WTP: ' + r.wtp + '</span><br><span style="color:var(--muted)">Style: ' + r.pricing + '</span></td>' +
+      '<td>' + r.note + '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+initPills();
+renderAll();
+</script>
+</body>
+</html>
